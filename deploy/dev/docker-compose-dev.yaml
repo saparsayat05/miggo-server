@@ -1,0 +1,19 @@
+services:
+  miggo_db:
+    container_name: miggo_db
+    image: postgres:latest
+    restart: always
+    env_file:
+      - ../../env/psql.env
+    user:
+      - postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/psql:/var/lib/postgresql/data
+    networks:
+      - miggo_network
+
+networks:
+  miggo_network:
+    driver: bridge
